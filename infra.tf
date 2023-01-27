@@ -22,14 +22,22 @@ variable "linode_api_token" {
     sensitive   = true
 }
 
+variable "k8s_node_type" {
+  default="g6-standard-2"
+}
+
 resource "linode_lke_cluster" "terraform_k8s" {
     k8s_version="1.24"
     label="terraform-k8s"
     region="us-east"
     tags=["terraform-k8s"]
     pool {
-        type  = "g6-standard-1"
+        type  = var.k8s_node_type
         count = 3
+        autoscaler {
+            min = 3
+            max = 8
+        }
     }
 }
 
