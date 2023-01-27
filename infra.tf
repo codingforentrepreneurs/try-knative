@@ -27,10 +27,10 @@ variable "k8s_node_type" {
 }
 
 resource "linode_lke_cluster" "terraform_k8s" {
-    k8s_version="1.24"
-    label="terraform-k8s"
+    k8s_version="1.25"
+    label="try-knative"
     region="us-east"
-    tags=["terraform-k8s"]
+    tags=["try-knative"]
     pool {
         type  = var.k8s_node_type
         count = 3
