@@ -39,6 +39,15 @@ resource "linode_lke_cluster" "terraform_k8s" {
             max = 8
         }
     }
+    
+    lifecycle {
+        # uncomment when you need to make changes
+        # to the cluster pool
+      ignore_changes = [
+        pool,
+      ]
+      create_before_destroy = true
+    }
 }
 
 resource "local_file" "k8s_config" {
