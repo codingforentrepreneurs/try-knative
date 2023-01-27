@@ -52,14 +52,14 @@ Be sure that if you're using _git_ that you have at least [this .gitignore](./bl
 
 ## 3. Add Autoscaling to your Kubernetes Cluster
 
-In `infra.tf`, we'll update the `linode_lke_cluster.terraform_k8s` resource to add autoscaling to our cluster.
+In `infra.tf`, we'll update the `linode_lke_cluster.terraform_k8s` resource to add autoscaling to our cluster and update the `k8s_version` to `1.25`.
 
 ```hcl
 resource "linode_lke_cluster" "terraform_k8s" {
-    k8s_version="1.24"
-    label="terraform-k8s"
+    k8s_version="1.25"
+    label="try-knative"
     region="us-east"
-    tags=["terraform-k8s"]
+    tags=["try-knative"]
      pool {
         type  = var.k8s_node_type
         count = 3
@@ -72,6 +72,8 @@ resource "linode_lke_cluster" "terraform_k8s" {
 ```
 
 The `autoscaler` declaration will ensure that Kubernetes has as many nodes as it needs to run your containerized applications. LKE will manage this for you without further intervention. The _autoscaler_ has strange behavior in Terraform so we'll update it in a bit.
+
+_Optional_: I also updated the `label`, and `tags` to be `try-knative` instead of `terraform-k8s` for this project. You should update them as you see fit. I left the name of Terraform resource `linode_lke_cluster` as `terraform_k8s` in order to limit how much of `infra.tf` we need to change. 
 
 
 ## 4. Terraform your Kubernetes Cluster
