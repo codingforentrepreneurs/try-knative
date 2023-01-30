@@ -26,3 +26,8 @@ spec:
                 configMapKeyRef:
                   name: cfe-nginx-mapping
                   key: PROJECT_NAME
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cfe-nginx-secret
+                  key: DJANGO_SECRET_KEY
