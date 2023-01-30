@@ -15,7 +15,7 @@ spec:
             - containerPort: 80
           env:
             - name: RELEASE_VERSION
-              value: "V1"
+              value: "V2"
             - name: OG_PROJECT_NAME
               valueFrom:
                 configMapKeyRef:
