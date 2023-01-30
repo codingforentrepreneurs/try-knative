@@ -3,7 +3,7 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: cfe-nginx
-  # namespace: apps
+  namespace: apps
 spec:
   template:
     spec:
