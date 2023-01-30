@@ -19,3 +19,6 @@ export KNATIVE_INGRESS_IP=$(kubectl --namespace istio-system get service istio-i
 
 echo "Your IP Address is: $KNATIVE_INGRESS_IP"
 echo "Add a cname record for your domain using the above IP address."
+
+
+# curl http://$KNATIVE_INGRESS_IP -H "Host: cfe-nginx.default.svc.cluster.local"
