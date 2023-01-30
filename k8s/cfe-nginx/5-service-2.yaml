@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: nginx-container
-          image: codingforentrepreneurs/cfe-nginx:latest
+          image: nginx:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80

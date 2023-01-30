@@ -1,0 +1,25 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: tryknative-root
+  namespace: apps
+spec:
+  gateways:
+    - knative-shared-gateway.knative-serving.svc.cluster.local
+    - knative-serving/knative-ingress-gateway
+  hosts:
+  - tryknative.com
+  - www.tryknative.com
+  http:
+    - name: http-route
+      match: 
+        - uri:
+           prefix: "/" # http://cfe-nginx.apps.tryknative.com/
+      rewrite:
+        authority: cfe-nginx.apps.tryknative.com
+      route:
+      - destination:
+          host: cfe-nginx.apps.svc.cluster.local
+          port:
+            number: 80
+        weight: 100
