@@ -1,0 +1,18 @@
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: cfe-nginx
+  # namespace: apps
+spec:
+  template:
+    spec:
+      containers:
+        - name: cfe-nginx-container
+          image: codingforentrepreneurs/cfe-nginx:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: RELEASE_VERSION
+              value: "V1"
