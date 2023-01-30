@@ -1,0 +1,8 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cfe-nginx-mapping
+data:
+  DEBUG: "0"
+  PROJECT_NAME: "CFE NGINX"

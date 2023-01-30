@@ -16,3 +16,13 @@ spec:
           env:
             - name: RELEASE_VERSION
               value: "V1"
+            - name: OG_PROJECT_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: cfe-nginx-mapping
+                  key: PROJECT_NAME
+            - name: PROJECT_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: cfe-nginx-mapping
+                  key: PROJECT_NAME
