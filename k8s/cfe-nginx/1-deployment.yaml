@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example-deployment
+  template:
+    metadata:
+      labels:
+        app: example-deployment
+    spec:
+      containers:
+        - name: example-deployment-container
+          image: codingforentrepreneurs/cfe-nginx:latest
+          imagePullPolicy: Always
+          ports:
+            - name: example-port
+              containerPort: 80
