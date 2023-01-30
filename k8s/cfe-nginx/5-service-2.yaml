@@ -1,0 +1,33 @@
+---
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: nginx
+  # namespace: apps
+spec:
+  template:
+    spec:
+      containers:
+        - name: nginx-container
+          image: codingforentrepreneurs/cfe-nginx:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          env:
+            - name: RELEASE_VERSION
+              value: "V2"
+            - name: OG_PROJECT_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: cfe-nginx-mapping
+                  key: PROJECT_NAME
+            - name: PROJECT_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: cfe-nginx-mapping
+                  key: PROJECT_NAME
+            - name: DJANGO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: cfe-nginx-secret
+                  key: DJANGO_SECRET_KEY
