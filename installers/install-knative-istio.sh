@@ -1,4 +1,4 @@
-export KNATIVE_VERSION="v1.8.1"
+export KNATIVE_VERSION="v1.11.1"
 
 
 # Install knative serving
